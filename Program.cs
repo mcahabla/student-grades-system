@@ -64,7 +64,7 @@ class Program
                     ShowTopStudent(students, enrolledStudents);
                     break;
                 case 5:
-                    Console.WriteLine("Bye!");
+                    Console.WriteLine("\nBye!");
                     return;
                 default:
                     Console.WriteLine("Invalid choice. Please enter a number between 1 and 5.");
