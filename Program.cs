@@ -7,11 +7,13 @@ class Student
     public double MathGrade { get; set; }
     public double EnglishGrade { get; set; }
 
+    //calculate the average grade of student and round off the result to 2 decimal places
     public double AverageGrade
     {
         get { return Math.Round((ScienceGrade + MathGrade + EnglishGrade) / 3, 2); }
     }
 
+    //string interpolation for formatting the output of the grades
     public override string ToString()
     {
         return $"{Name,-15} {ScienceGrade,-10} {MathGrade,-6} {EnglishGrade,-9} {AverageGrade,-4}";
@@ -23,9 +25,12 @@ class Program
     static void Main(string[] args)
     {
         Console.WriteLine("------------------------------\n");
+
+        //enter number of students to enroll
         Console.Write("Enter total number of students: ");
         int totalStudents = int.Parse(Console.ReadLine());
 
+        //creates an array with size specified by totalStudent
         Student[] students = new Student[totalStudents];
         int enrolledStudents = 0;
 
@@ -41,10 +46,13 @@ class Program
 
             Console.Write("Enter Choice: ");
             int choice = int.Parse(Console.ReadLine());
-
+            
+            //switch statement 
             switch (choice)
             {
                 case 1:
+
+                    //ensures that the enrolledStudents do not exceeds the number of totalStudents
                     if (enrolledStudents < totalStudents)
                     {
                         EnrollStudent(students, ref enrolledStudents);
@@ -67,6 +75,7 @@ class Program
                     Console.WriteLine("\nBye!");
                     return;
                 default:
+                    //ensures that the users enter a number between 1-5 only
                     Console.WriteLine("Invalid choice. Please enter a number between 1 and 5.");
                     break;
             }
@@ -78,6 +87,8 @@ class Program
         Console.Write("\n");
         Console.WriteLine("\nEnroll Student");
         Console.Write("Enter student name: ");
+
+        //user enters the name of the student and then the student object is added to the students array
         students[enrolledStudents] = new Student { Name = Console.ReadLine() };
         enrolledStudents++;
         char choice;
@@ -100,6 +111,7 @@ class Program
         }
     }
 
+    //allows the user to input each grade for science, math and english
     static void EnterStudentGrades(Student[] students)
     {
         foreach (var student in students)
@@ -126,6 +138,7 @@ class Program
         }
     }
 
+    //prints each student's grades using foreach
     static void ShowStudentGrades(Student[] students)
     {
         Console.WriteLine("\nStudent Grades");
@@ -156,6 +169,7 @@ class Program
             }
         }
 
+        //prints the name of the top performing student
         Console.WriteLine($"\nTop-performing student: {topStudent}");
     }
 }
